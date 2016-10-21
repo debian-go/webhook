@@ -1,0 +1,12 @@
+SystemD customization
+=====================
+
+To customize SystemD parameters like the command line used to start the
+webhook service, create a file named /etc/systemd/system/webhook.service
+with contents like:
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/webhook -verbose -port 8000
+User=my-user
+Group=my-group

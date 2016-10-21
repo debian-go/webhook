@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+# Create our hook command
+cat <<EOF > $AUTOPKGTEST_TMP/hello
+#!/bin/sh
+echo -n hello
+EOF
+chmod 755  $AUTOPKGTEST_TMP/hello
+
+# Create the hooks file
+cat <<EOF > /etc/webhook.conf
+[
+  {
+    "id": "hello",
+    "include-command-output-in-response": true,
+    "execute-command": "$AUTOPKGTEST_TMP/hello"
+  }
+]
+EOF
+
+systemctl restart webhook
+
+sleep 2
+
+if [ "$(curl --stderr /dev/null http://localhost:9000/hooks/hello)" != "hello" ]; then
+    echo "Unexpected hook output"
+    exit 1
+fi

@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  - TRAVIS_DEBIAN_AUTOPKGTEST=false
+
+script:
+  - wget -O- http://travis.debian.net/script.sh | sh -
+
+branches:
+  except:
+    - /^debian\/\d/

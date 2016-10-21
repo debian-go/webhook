@@ -1,0 +1,36 @@
+Source: webhook
+Section: devel
+Priority: extra
+Maintainer: Debian Go Packaging Team <pkg-go-maintainers@lists.alioth.debian.org>
+Uploaders: Free Ekanayaka <freee@debian.org>
+Build-Depends: debhelper (>= 9),
+               dh-systemd (>= 1.5),
+               dh-golang,
+               golang-go,
+               golang-github-urfave-negroni-dev,
+               golang-github-gorilla-mux-dev,
+               golang-github-fsnotify-fsnotify-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/adnanh/webhook
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-go/packages/webhook.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-go/packages/webhook.git
+XS-Go-Import-Path: github.com/adnanh/webhook
+
+Package: webhook
+Architecture: any
+Built-Using: ${misc:Built-Using}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Small server for creating HTTP endpoints (hooks)
+ Webhook is a lightweight configurable tool written in Go, that
+ allows you to easily create HTTP endpoints (hooks) on your
+ server, which you can use to execute configured commands. You
+ can also pass data from the HTTP request (such as headers,
+ payload or query variables) to your commands. webhook also
+ allows you to specify rules which have to be satisfied in
+ order for the hook to be triggered.
+ .
+ For example, if you're using Github or Bitbucket, you can
+ use webhook to set up a hook that runs a redeploy script
+ for your project on your staging server, whenever you push
+ changes to the master branch of your project.

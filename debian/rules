@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+export DH_GOLANG_INSTALL_EXTRA := \
+	test/hooks.json.tmpl \
+	hooks.json.example
+
+export DH_GOLANG_EXCLUDES := test
+
+
+%:
+	dh $@ --buildsystem=golang --with=golang --with systemd
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source
+
+override_dh_installinit:
+	dh_systemd_enable -popenstack --name=openstack openstack.service
+	dh_installinit -popenstack --no-start --noscripts
+	dh_systemd_start -popenstack --no-restart-on-upgrade

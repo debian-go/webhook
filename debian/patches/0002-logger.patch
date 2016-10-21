@@ -1,0 +1,26 @@
+From: Free Ekanayaka <freee@debian.org>
+Date: Wed, 26 Oct 2016 13:35:45 +0000
+Subject: logger
+
+Rename ALogger to Logger, since the API has changed in negroni.
+---
+ webhook.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/webhook.go b/webhook.go
+index e71a40e..8269845 100644
+--- a/webhook.go
++++ b/webhook.go
+@@ -111,10 +111,10 @@ func main() {
+ 	}
+ 
+ 	l := negroni.NewLogger()
+-	l.ALogger = log.New(os.Stderr, "[webhook] ", log.Ldate|log.Ltime)
++	l.Logger = log.New(os.Stderr, "[webhook] ", log.Ldate|log.Ltime)
+ 
+ 	negroniRecovery := &negroni.Recovery{
+-		Logger:     l.ALogger,
++		Logger:     l.Logger,
+ 		PrintStack: true,
+ 		StackAll:   false,
+ 		StackSize:  1024 * 8,

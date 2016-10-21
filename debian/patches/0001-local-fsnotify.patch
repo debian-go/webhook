@@ -1,0 +1,27 @@
+From: Free Ekanayaka <freee@debian.org>
+Date: Fri, 21 Oct 2016 13:51:50 +0000
+Subject: local-fsnotify
+
+Use local fsnotify package and not the one from gopkg.in
+
+---
+ webhook.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/webhook.go b/webhook.go
+index 20ac190..e71a40e 100644
+--- a/webhook.go
++++ b/webhook.go
+@@ -14,10 +14,10 @@ import (
+ 
+ 	"github.com/adnanh/webhook/hook"
+ 
+-	"github.com/codegangsta/negroni"
++	"github.com/urfave/negroni"
+ 	"github.com/gorilla/mux"
+ 
+-	fsnotify "gopkg.in/fsnotify.v1"
++	"github.com/fsnotify/fsnotify"
+ )
+ 
+ const (

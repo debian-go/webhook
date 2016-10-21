@@ -1,0 +1,5 @@
+Tests: simple-webhook
+Restrictions: needs-root, isolation-container
+Depends: @,
+  systemd,
+  curl
